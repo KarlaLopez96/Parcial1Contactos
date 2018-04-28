@@ -123,41 +123,19 @@ FavoritosFragment.OnFragmentInteractionListener{
     }
 
     private ArrayList<Contactos> fillList(){
-        String telefono = "";
+        String id,nombre,telefono = "";
         ArrayList<Contactos> l = new ArrayList<>();
 
-        ContentResolver cr = getContentResolver();
-        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
-                null, null, null, null);
-
-        if ((cur != null ? cur.getCount() : 0) > 0) {
-            while (cur != null && cur.moveToNext()) {
-                String id = cur.getString(
-                        cur.getColumnIndex(ContactsContract.Contacts._ID));
-                String nombre = cur.getString(cur.getColumnIndex(
-                        ContactsContract.Contacts.DISPLAY_NAME));
-
-                if (cur.getInt(cur.getColumnIndex(
-                        ContactsContract.Contacts.HAS_PHONE_NUMBER)) > 0) {
-                    Cursor pCur = cr.query(
-                            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                            null,
-                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
-                            new String[]{id}, null);
-                    while (pCur.moveToNext()) {
-                        telefono = pCur.getString(pCur.getColumnIndex(
-                                ContactsContract.CommonDataKinds.Phone.NUMBER));
-                        //Log.i(TAG, "Name: " + name);
-                        //Log.i(TAG, "Phone Number: " + phoneNo);
-                    }
-                    pCur.close();
-                }
-                l.add(new Contactos(id,nombre,telefono));
-            }
+        Cursor phones = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null,null,null, null);
+        while (phones.moveToNext())
+        {
+            id = phones.getString(phones.getColumnIndex(ContactsContract.Contacts._ID));
+            nombre=phones.getString(phones.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+            telefono = phones.getString(phones.getColumnIndex(ContactsContract.Contacts.NUMBER));
+            //Toast.makeText(getApplicationContext(),name, Toast.LENGTH_LONG).show();
+            l.add(new Contactos("1",nombre,telefono));
         }
-        if(cur!=null){
-            cur.close();
-        }
+        phones.close();
         //l.add(new Contactos(1, "Los Vengadores", desc,false/*getResources().getDrawable(R.drawable.avengers)*/));
 
         return l;
