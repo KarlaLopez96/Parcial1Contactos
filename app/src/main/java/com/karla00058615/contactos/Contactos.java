@@ -1,4 +1,4 @@
-package com.karla00058615.peliculas;
+package com.karla00058615.contactos;
 
 /**
  * Created by Karla on 21/4/2018.
@@ -19,10 +19,11 @@ public class Contactos {
         this.fecha = fecha;
     }
 
-    public Contactos(String id, String nombre, String telefono) {
+    public Contactos(String id, String nombre, String telefono,String email) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
+        this.email = email;
     }
 
     public boolean isFav() {

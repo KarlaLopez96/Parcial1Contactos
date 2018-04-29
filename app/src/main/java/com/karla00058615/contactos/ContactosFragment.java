@@ -1,4 +1,4 @@
-package com.karla00058615.peliculas;
+package com.karla00058615.contactos;
 
 import android.content.Context;
 import android.net.Uri;
@@ -17,42 +17,44 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FavoritosFragment.OnFragmentInteractionListener} interface
+ * {@link ContactosFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class FavoritosFragment extends Fragment {
+public class ContactosFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public FavoritosFragment() {
+    public ContactosFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
+        View view = inflater.inflate(R.layout.fragment_peliculas, container, false);
 
         List<Contactos> contactosList;
         RecyclerView recyclerView;
         PeliculasAdapter adapter;
 
-        //filling the planet list
-        contactosList = fillList();
+            //filling the planet list
+            contactosList = fillList();
 
-        //setting the recyclerview
-        recyclerView = view.findViewById(R.id.recyclerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        adapter = new PeliculasAdapter(getContext(), contactosList);
+            //setting the recyclerview
+            recyclerView = view.findViewById(R.id.recyclerView);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+            adapter = new PeliculasAdapter(getContext(), contactosList);
 
-        //recyclerview
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(adapter);
+            //recyclerview
+            recyclerView.setLayoutManager(linearLayoutManager);
+            recyclerView.setAdapter(adapter);
 
         return view;
-    }
 
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -79,17 +81,13 @@ public class FavoritosFragment extends Fragment {
     }
 
     private ArrayList<Contactos> fillList(){
-
         int cont = 0;
-        int holder;
         Bundle bundle = getArguments();
         ArrayList<Contactos> l = new ArrayList<>();
 
-        for (int i = 0;i < (bundle.size())/4;i++){
-            if(bundle.getBoolean("fav"+cont)){
-                l.add(new Contactos(bundle.getString("name"+cont),bundle.getString("name"+cont),
-                        bundle.getString("description"+cont)));
-            }
+        for (int i = 0;i < (bundle.size())/5;i++){
+            l.add(new Contactos(bundle.getString("id"+cont),bundle.getString("name"+cont)
+                    ,bundle.getString("telefono"+cont),bundle.getString("enmail"+cont)));
             cont++;
         }
 

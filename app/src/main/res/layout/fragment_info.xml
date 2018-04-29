@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoFragment">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageContact"
+        android:layout_width="176dp"
+        android:layout_height="176dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="4dp"/>
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HOLIWIA"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imageContact"
+        android:layout_marginTop="32dp"
+        android:textColor="#000"/>
+
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ing. Informatica"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000"
+        android:layout_below="@+id/name"
+        android:layout_margin="8dp"/>
+
+    <TextView
+        android:id="@+id/direccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KarlaLopez96"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/id"
+        android:layout_marginTop="30dp"
+        android:textColor="#000" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/direccion"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:text="00058615\n@uca.edu.sv"
+        android:textColor="#000" />
+
+
+    <TextView
+        android:id="@+id/telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cel: 73459867"
+        android:layout_below="@+id/id"
+        android:layout_toRightOf="@+id/id"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="8dp"
+        android:textColor="#000" />
+
+    <Button
+        android:id="@+id/buttonCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call"
+        android:layout_below="@id/id"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="150dp"/>
+
+    <Button
+        android:id="@+id/buttonShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share"
+        android:layout_below="@id/id"
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="150dp"/>
+    
+
+</RelativeLayout>

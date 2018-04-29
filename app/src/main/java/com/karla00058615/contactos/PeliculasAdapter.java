@@ -1,4 +1,4 @@
-package com.karla00058615.peliculas;
+package com.karla00058615.contactos;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

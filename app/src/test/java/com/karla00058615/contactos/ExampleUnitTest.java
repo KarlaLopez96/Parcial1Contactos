@@ -1,4 +1,4 @@
-package com.karla00058615.peliculas;
+package com.karla00058615.contactos;
 
 import org.junit.Test;
 

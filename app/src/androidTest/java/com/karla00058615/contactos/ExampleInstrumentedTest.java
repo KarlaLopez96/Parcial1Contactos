@@ -1,4 +1,4 @@
-package com.karla00058615.peliculas;
+package com.karla00058615.contactos;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.karla00058615.peliculas", appContext.getPackageName());
+        assertEquals("com.karla00058615.contactos", appContext.getPackageName());
     }
 }
