@@ -34,9 +34,9 @@ public class FavoritosFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
 
-        List<Contactos> contactosList;
+        ArrayList<Contactos> contactosList;
         RecyclerView recyclerView;
-        PeliculasAdapter adapter;
+        ContactsAdapter adapter;
 
         //filling the planet list
         contactosList = fillList();
@@ -44,7 +44,7 @@ public class FavoritosFragment extends Fragment {
         //setting the recyclerview
         recyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        adapter = new PeliculasAdapter(getContext(), contactosList);
+        adapter = new ContactsAdapter(getContext(), contactosList);
 
         //recyclerview
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -85,10 +85,12 @@ public class FavoritosFragment extends Fragment {
         Bundle bundle = getArguments();
         ArrayList<Contactos> l = new ArrayList<>();
 
-        for (int i = 0;i < (bundle.size())/5;i++){
+        for (int i = 0;i < (bundle.size())/7;i++){
             if(bundle.getBoolean("fav"+cont)){
-                l.add(new Contactos(bundle.getString("id"+cont),bundle.getString("name"+cont),
-                        bundle.getString("telefono"+cont),bundle.getString("email"+cont)));
+                l.add(new Contactos(bundle.getString("id"+cont),bundle.getString("name"+cont)
+                        ,bundle.getString("enmail"+cont),bundle.getBoolean("fav"+cont)
+                        ,bundle.getString("telefono"+cont),bundle.getString("direccion"+cont),
+                        bundle.getString("fecha"+cont)));
             }
             cont++;
         }

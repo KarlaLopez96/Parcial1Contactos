@@ -19,7 +19,7 @@ import com.karla00058615.contactos.Contactos;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,ContactosFragment.OnFragmentInteractionListener,
-FavoritosFragment.OnFragmentInteractionListener{
+FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteractionListener{
     private final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 123;
     Button contacts,fav;
     ArrayList<Contactos> contactos = new ArrayList<>();
@@ -73,6 +73,8 @@ FavoritosFragment.OnFragmentInteractionListener{
             bundle.putString("id"+cont, contactos.get(i).getId());
             bundle.putBoolean("fav"+cont, contactos.get(i).getFav());
             bundle.putString("telefono"+cont, contactos.get(i).getTelefono());
+            bundle.putString("direccion"+cont, contactos.get(i).getDirecion());
+            bundle.putString("fecha"+cont, contactos.get(i).getFecha());
             cont++;
         }
         cont = 0;
@@ -104,6 +106,8 @@ FavoritosFragment.OnFragmentInteractionListener{
             bundle.putString("id"+cont, contactos.get(i).getId());
             bundle.putBoolean("fav"+cont, contactos.get(i).getFav());
             bundle.putString("telefono"+cont, contactos.get(i).getTelefono());
+            bundle.putString("direccion"+cont, contactos.get(i).getDirecion());
+            bundle.putString("fecha"+cont, contactos.get(i).getFecha());
             cont++;
         }
         cont = 0;
@@ -136,6 +140,8 @@ FavoritosFragment.OnFragmentInteractionListener{
             bundle.putString("id"+cont, contactos.get(i).getId());
             bundle.putBoolean("fav"+cont, contactos.get(i).getFav());
             bundle.putString("telefono"+cont, contactos.get(i).getTelefono());
+            bundle.putString("direccion"+cont, contactos.get(i).getDirecion());
+            bundle.putString("fecha"+cont, contactos.get(i).getFecha());
             cont++;
         }
         cont = 0;
@@ -150,7 +156,9 @@ FavoritosFragment.OnFragmentInteractionListener{
 
     private ArrayList<Contactos> fillList(){
         String id,nombre,email="vacio",telefonos = "vacio";
+        String direccion = "vacio",fecha = "vacio";
         ArrayList<Contactos> l = new ArrayList<>();
+
 
         Cursor phones = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null,null,null, null);
         while (phones.moveToNext())
@@ -158,22 +166,59 @@ FavoritosFragment.OnFragmentInteractionListener{
             id = phones.getString(phones.getColumnIndex(ContactsContract.Contacts._ID));
             nombre=phones.getString(phones.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
 
+            String columns[] = {
+                    ContactsContract.CommonDataKinds.Event.START_DATE,
+                    ContactsContract.CommonDataKinds.Event.TYPE,
+                    ContactsContract.CommonDataKinds.Event.MIMETYPE,
+            };
+
+            String where = ContactsContract.CommonDataKinds.Event.TYPE + "=" +
+                    ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY +
+                    " and " + ContactsContract.CommonDataKinds.Event.MIMETYPE + " = '" +
+                    ContactsContract.CommonDataKinds.Event.CONTENT_ITEM_TYPE + "' and "
+                    + ContactsContract.Data.CONTACT_ID +  " = "+ id;
+
+            String sortOrder = ContactsContract.Contacts.DISPLAY_NAME;
+
+            Uri postal_uri = ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_URI;
+            Cursor postal_cursor  = getContentResolver().query(postal_uri,null,
+                    ContactsContract.Data.CONTACT_ID + "= ?",new String[]{id}, null,null);
+            while(postal_cursor.moveToNext())
+            {
+                String Strt = postal_cursor.getString(postal_cursor.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.STREET));
+                String Cty = postal_cursor.getString(postal_cursor.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.CITY));
+                String cntry = postal_cursor.getString(postal_cursor.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.COUNTRY));
+                postal_cursor.close();
+                direccion = Strt + " " + Cty + " " + cntry;
+                break;
+            }
+            postal_cursor.close();
+
             Cursor PhoneC = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
                     ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "= ?",new String[]{id},null);
 
             while (PhoneC.moveToNext()){
                 telefonos = PhoneC.getString(PhoneC.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                PhoneC.close();
                 break;
             }
 
-            Cursor PhoneE = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
+            Cursor PhoneE = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI,null,
                     ContactsContract.CommonDataKinds.Email.CONTACT_ID + "= ?",new String[]{id},null);
 
             while (PhoneE.moveToNext()){
                 email = PhoneE.getString(PhoneE.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
+                PhoneE.close();
                 break;
             }
-            l.add(new Contactos(id,nombre,telefonos,email));
+            Cursor birthdayCur = getContentResolver().query(ContactsContract.Data.CONTENT_URI,
+                    columns, where, null, sortOrder);
+            while (birthdayCur.moveToNext()) {
+                fecha = birthdayCur.getString(birthdayCur.getColumnIndex(ContactsContract.CommonDataKinds.Event.START_DATE));
+                break;
+            }
+            birthdayCur.close();
+            l.add(new Contactos(id,nombre,email,false,telefonos,direccion,fecha));
         }
         phones.close();
         //l.add(new Contactos(1, "Los Vengadores", desc,false/*getResources().getDrawable(R.drawable.avengers)*/));

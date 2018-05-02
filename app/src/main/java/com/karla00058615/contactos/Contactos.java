@@ -10,20 +10,30 @@ public class Contactos {
     private  boolean fav;
     private String nombre, email,telefono,direcion,fecha;
 
-    public Contactos(String id, String nombre, String email, boolean fav, String direcion, String fecha) {
+    public Contactos(String id, String nombre, String email, boolean fav,String telefono, String direcion, String fecha) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.fav = fav;
         this.direcion =direcion;
         this.fecha = fecha;
+        this.telefono = telefono;
     }
 
-    public Contactos(String id, String nombre, String telefono,String email) {
-        this.id = id;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.email = email;
+    public String getDirecion() {
+        return direcion;
+    }
+
+    public void setDirecion(String direcion) {
+        this.direcion = direcion;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     public boolean isFav() {

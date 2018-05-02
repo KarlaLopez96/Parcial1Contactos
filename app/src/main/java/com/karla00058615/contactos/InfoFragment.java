@@ -7,6 +7,8 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -18,6 +20,7 @@ import android.view.ViewGroup;
 public class InfoFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    private TextView nombre,id,direccion,telefono,email;
 
     public InfoFragment() {
         // Required empty public constructor
@@ -27,8 +30,21 @@ public class InfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_info, container, false);
+        nombre = (TextView) view.findViewById(R.id.name);
+        id = (TextView)view.findViewById(R.id.id);
+        direccion = (TextView)view.findViewById(R.id.direccion);
+        email =(TextView) view.findViewById(R.id.email);
+        telefono = (TextView)view.findViewById(R.id.telefono);
+
+        nombre.setText("adsfsdf");
+        id.setText("adsfsdf");
+        direccion.setText("adsfsdf");
+        email.setText("adsfsdf");
+        telefono.setText("adsfsdf");
+
+        Toast.makeText(getContext(),"sdsdgsdgs",Toast.LENGTH_LONG).show();
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

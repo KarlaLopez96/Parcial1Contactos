@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.karla00058615.contactos.com.karla00058615.contactos.MainActivity"
+    tools:context="com.karla00058615.contactos.MainActivity"
     android:orientation="vertical"
     android:id="@+id/principal_layout">
+
     <LinearLayout
         android:layout_weight="10"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <Button
             android:id="@+id/button_peliculas"
             android:layout_width="wrap_content"

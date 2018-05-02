@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +35,11 @@ public class ContactosFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_peliculas, container, false);
+        View view = inflater.inflate(R.layout.fragment_contacts, container, false);
 
-        List<Contactos> contactosList;
+        ArrayList<Contactos> contactosList = new ArrayList<>();
         RecyclerView recyclerView;
-        PeliculasAdapter adapter;
+        ContactsAdapter adapter;
 
             //filling the planet list
             contactosList = fillList();
@@ -46,7 +47,7 @@ public class ContactosFragment extends Fragment {
             //setting the recyclerview
             recyclerView = view.findViewById(R.id.recyclerView);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-            adapter = new PeliculasAdapter(getContext(), contactosList);
+            adapter = new ContactsAdapter(getContext(), contactosList);
 
             //recyclerview
             recyclerView.setLayoutManager(linearLayoutManager);
@@ -85,16 +86,27 @@ public class ContactosFragment extends Fragment {
         Bundle bundle = getArguments();
         ArrayList<Contactos> l = new ArrayList<>();
 
-        for (int i = 0;i < (bundle.size())/5;i++){
+        for (int i = 0;i < (bundle.size())/7;i++){
             l.add(new Contactos(bundle.getString("id"+cont),bundle.getString("name"+cont)
-                    ,bundle.getString("telefono"+cont),bundle.getString("enmail"+cont)));
+                    ,bundle.getString("enmail"+cont),bundle.getBoolean("fav"+cont)
+                    ,bundle.getString("telefono"+cont),bundle.getString("direccion"+cont),
+                    bundle.getString("fecha"+cont)));
             cont++;
         }
 
         return l;
     }
 
+
     /**
+     *  public Contactos(String id, String nombre, String email, boolean fav, String direcion, String fecha) {
+     this.id = id;
+     this.nombre = nombre;
+     this.email = email;
+     this.fav = fav;
+     this.direcion =direcion;
+     this.fecha = fecha;
+     }
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
