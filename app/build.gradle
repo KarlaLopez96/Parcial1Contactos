@@ -4,8 +4,9 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.karla00058615.contactos"
-        minSdkVersion 23
+        minSdkVersion 16
         targetSdkVersion 26
+        maxSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
