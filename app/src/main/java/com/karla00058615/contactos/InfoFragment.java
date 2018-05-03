@@ -28,7 +28,7 @@ public class InfoFragment extends Fragment {
 
     private final int MY_PERMISSIONS_REQUEST_CALL = 123;
     private OnFragmentInteractionListener mListener;
-    private TextView nombre,id,direccion,telefono,email;
+    private TextView nombre,id,direccion,telefono,email,fecha;
     private Button buttonShare,buttonCall;
     Bundle bundle;
 
@@ -46,6 +46,7 @@ public class InfoFragment extends Fragment {
         id = (TextView)view.findViewById(R.id.id);
         direccion = (TextView)view.findViewById(R.id.direccion);
         email =(TextView) view.findViewById(R.id.email);
+        fecha = (TextView)view.findViewById(R.id.fecha) ;
         telefono = (TextView)view.findViewById(R.id.telefono);
         buttonShare = (Button)view.findViewById(R.id.buttonShare);
         buttonCall = (Button)view.findViewById(R.id.buttonCall);
@@ -76,6 +77,7 @@ public class InfoFragment extends Fragment {
         direccion.setText("Dirección: "+bundle.getString("direccion"));
         email.setText("Email: "+bundle.getString("email"));
         telefono.setText("Móvil: "+bundle.getString("telefono"));
+        fecha.setText("Fecha: "+bundle.getString("fecha"));
 
         buttonCall.setOnClickListener(new View.OnClickListener() {
             @Override
