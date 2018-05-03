@@ -2,15 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InfoFragment">
+    tools:context=".InfoFragment"
+    android:layout_margin="8dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageContact"
         android:layout_width="176dp"
         android:layout_height="176dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/face"
         android:layout_centerHorizontal="true"
-        android:layout_margin="4dp"/>
+        android:layout_margin="8dp"/>
 
 
     <TextView
@@ -20,7 +21,7 @@
         android:text="HOLIWIA"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/imageContact"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:textColor="#000"/>
 
     <TextView
@@ -47,10 +48,10 @@
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/direccion"
-        android:layout_marginTop="40dp"
+        android:layout_below="@id/id"
+        android:layout_marginTop="80dp"
         android:layout_marginLeft="20dp"
-        android:text="00058615\n@uca.edu.sv"
+        android:text="00058615@uca.edu.sv"
         android:textColor="#000" />
 
 
@@ -61,7 +62,7 @@
         android:text="Cel: 73459867"
         android:layout_below="@+id/id"
         android:layout_toRightOf="@+id/id"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:layout_marginLeft="8dp"
         android:textColor="#000" />
 
@@ -72,7 +73,7 @@
         android:text="Call"
         android:layout_below="@id/id"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="150dp"/>
+        android:layout_marginTop="130dp"/>
 
     <Button
         android:id="@+id/buttonShare"
@@ -81,7 +82,7 @@
         android:text="Share"
         android:layout_below="@id/id"
         android:layout_marginLeft="240dp"
-        android:layout_marginTop="150dp"/>
+        android:layout_marginTop="130dp"/>
     
 
 </RelativeLayout>

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,21 +48,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     public void onBindViewHolder(final ContactsViewHolder holder, final int position) {
         holder.titleTxtView.setText(contactosList.get(position).getNombre());
         //holder.img.setImageDrawable(contactosList.get(position).getImg());
-        holder.fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                contactosList.get(position).setFav(!contactosList.get(position).getFav());
-                /*Bundle bundle = new Bundle();
-                bundle.putString("name"+cont,contactosList.get(position).getNombre());
-                bundle.putString("description"+cont,contactosList.get(position).getEmail());
-                bundle.putInt("id"+cont,contactosList.get(position).getId());
-
-                FavoritosFragment fragment = new FavoritosFragment();
-                fragment.setArguments(bundle);
-                cont++;*/
-                Toast.makeText(context,"item: "+position + ", fav: " + contactosList.get(position).getFav(),Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
@@ -74,7 +60,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         TextView titleTxtView;
         ArrayList<Contactos> contactos = new ArrayList<>();
         Context ctx;
-        Button fav;
+        ImageButton fav;
 
         public ContactsViewHolder(View itemView,Context ctx,ArrayList<Contactos> contactos) {
             super(itemView);

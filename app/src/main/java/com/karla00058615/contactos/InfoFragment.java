@@ -1,12 +1,14 @@
 package com.karla00058615.contactos;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,8 @@ public class InfoFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private TextView nombre,id,direccion,telefono,email;
+    private Button buttonShare,buttonCall;
+    Bundle bundle;
 
     public InfoFragment() {
         // Required empty public constructor
@@ -30,20 +34,52 @@ public class InfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_info, container, false);
         nombre = (TextView) view.findViewById(R.id.name);
         id = (TextView)view.findViewById(R.id.id);
         direccion = (TextView)view.findViewById(R.id.direccion);
         email =(TextView) view.findViewById(R.id.email);
         telefono = (TextView)view.findViewById(R.id.telefono);
+        buttonShare = (Button)view.findViewById(R.id.buttonShare);
+        buttonCall = (Button)view.findViewById(R.id.buttonCall);
+        buttonShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        nombre.setText("adsfsdf");
-        id.setText("adsfsdf");
-        direccion.setText("adsfsdf");
-        email.setText("adsfsdf");
-        telefono.setText("adsfsdf");
+                try{
+                    final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(Intent.EXTRA_TEXT, nombre.getText().toString() + "/n"+
+                            direccion.getText().toString() + "/n" +
+                            email.getText().toString()+"/n" +
+                            telefono.getText().toString()+"/n");
+                    intent.setType("*/*");
+                    startActivity(Intent.createChooser(intent, "Sharing contact"));
+                } catch (Exception e) {
+                    e.printStackTrace();
 
-        Toast.makeText(getContext(),"sdsdgsdgs",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        bundle = getArguments();
+
+        nombre.setText(bundle.getString("name"));
+        id.setText(bundle.getString("id"));
+        direccion.setText("Dirección: "+bundle.getString("direccion"));
+        email.setText("Email: "+bundle.getString("email"));
+        telefono.setText("Móvil: "+bundle.getString("telefono"));
+
+        buttonCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:"+bundle.getString("telefono")));
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
@@ -71,16 +107,7 @@ public class InfoFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

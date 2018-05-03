@@ -114,7 +114,7 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
         //se manda el bundle al fragment
         fragment.setArguments(bundle);
 
-        transaction.add(R.id.fragmentC, fragment);
+        transaction.replace(R.id.fragmentC, fragment);
 
         //Realizando cambios.
         transaction.commit();
@@ -148,15 +148,15 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
         //se manda el bundle al fragment
         fragment.setArguments(bundle);
 
-        transaction.add(R.id.fragmentC, fragment);
+        transaction.replace(R.id.fragmentC, fragment);
 
         //Realizando cambios.
         transaction.commit();
     }
 
     private ArrayList<Contactos> fillList(){
-        String id,nombre,email="vacio",telefonos = "vacio";
-        String direccion = "vacio",fecha = "vacio";
+        String id,nombre,email=" ",telefonos = " ";
+        String direccion = " ",fecha = " ";
         ArrayList<Contactos> l = new ArrayList<>();
 
 
@@ -218,7 +218,17 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
                 break;
             }
             birthdayCur.close();
+            if(email.equals("null")){
+                email = "";
+            }
             l.add(new Contactos(id,nombre,email,false,telefonos,direccion,fecha));
+            id = " ";
+            nombre = "";
+            email = " ";
+            telefonos = " ";
+            fecha = " ";
+            direccion = " ";
+
         }
         phones.close();
         //l.add(new Contactos(1, "Los Vengadores", desc,false/*getResources().getDrawable(R.drawable.avengers)*/));
