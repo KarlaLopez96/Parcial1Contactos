@@ -30,6 +30,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.2.0'
 }
 
-configurations.all{
+
+configurations.all {
     resolutionStrategy.force 'com.android.support:support-annotations:26.0.0'
 }

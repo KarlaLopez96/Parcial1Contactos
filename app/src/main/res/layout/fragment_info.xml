@@ -9,7 +9,7 @@
         android:id="@+id/imageContact"
         android:layout_width="176dp"
         android:layout_height="176dp"
-        android:src="@drawable/face"
+        android:src="@drawable/contact"
         android:layout_centerHorizontal="true"
         android:layout_margin="8dp"/>
 

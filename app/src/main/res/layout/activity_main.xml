@@ -8,12 +8,21 @@
     android:orientation="vertical"
     android:id="@+id/principal_layout">
 
+    <include layout="@layout/toolbar"/>
+
     <LinearLayout
-        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="11"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <Button
+            android:layout_gravity="bottom"
             android:id="@+id/button_peliculas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,6 +32,7 @@
             android:layout_weight="1"/>
 
         <Button
+            android:layout_gravity="bottom"
             android:onClick="favoritos"
             android:textColor="#fff"
             android:id="@+id/button_favoritos"

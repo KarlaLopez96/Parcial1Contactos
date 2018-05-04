@@ -1,6 +1,7 @@
 package com.karla00058615.contactos;
 
 import android.Manifest;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -84,8 +85,10 @@ public class InfoFragment extends Fragment{
                 cubeta.putString("telefono",bundle.getString("telefono"));
                 cubeta.putString("fecha",bundle.getString("fecha"));
 
+            //mListener.onFragmentInteraction();
+
                 //Maneja los fragmentos.
-                android.app.FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getFragmentManager() ;
 
                 fragmentManager.executePendingTransactions();
 

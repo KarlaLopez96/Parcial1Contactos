@@ -8,14 +8,10 @@ import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-
-import com.karla00058615.contactos.ContactosFragment;
-import com.karla00058615.contactos.FavoritosFragment;
-import com.karla00058615.contactos.R;
-import com.karla00058615.contactos.Contactos;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,ContactosFragment.OnFragmentInteractionListener,
@@ -24,12 +20,15 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
     Button contacts,fav;
     ArrayList<Contactos> contactos = new ArrayList<>();
     int cont = 0;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         //Peticion de permisos
 
         // Should we show an explanation?
@@ -48,12 +47,12 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
         /***************************************************************************************/
     }
 
+
     public void SecondMain(){
         contacts = (Button)findViewById(R.id.button_peliculas);
         fav = (Button) findViewById(R.id.button_favoritos);
 
         contactos = fillList();
-
         contacts.setOnClickListener(this);
 
         //Maneja los fragmentos.
@@ -263,6 +262,14 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
 
 
 //pasar aqui mi lista porque maneja mis dos fragmentos.
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
