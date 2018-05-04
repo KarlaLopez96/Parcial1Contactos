@@ -1,5 +1,6 @@
 package com.karla00058615.contactos;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +28,15 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     Context context;
     ArrayList<Contactos> contactosList;
     View view;
+    Activity activity;
+    ComunicationFragment CF;
     int cont = 0;
 
-    public ContactsAdapter(Context context, ArrayList<Contactos> contactosList) {
+    public ContactsAdapter(Context context, ArrayList<Contactos> contactosList, Activity activity) {
         this.context = context;
         this.view = view;
         this.contactosList = contactosList;
+        this.activity = activity;
     }
 
 
@@ -40,6 +45,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     public ContactsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.layout_list, parent, false);
+        CF = (ComunicationFragment) activity;
 
         return new ContactsViewHolder(v,context,contactosList);
     }
@@ -47,6 +53,14 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     @Override
     public void onBindViewHolder(final ContactsViewHolder holder, final int position) {
         holder.titleTxtView.setText(contactosList.get(position).getNombre());
+        holder.fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                contactosList.get(position).setFav(true);
+                CF.añadirFav(contactosList.get(position));
+                Toast.makeText(context,"contacto agregado",Toast.LENGTH_LONG).show();
+            }
+        });
         //holder.img.setImageDrawable(contactosList.get(position).getImg());
     }
 

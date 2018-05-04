@@ -52,7 +52,7 @@ public class ContactosFragment extends Fragment {
             linearLayoutManager = new LinearLayoutManager(getContext());
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            adapter = new ContactsAdapter(getContext(), contactosList);
+            adapter = new ContactsAdapter(getContext(), contactosList,getActivity());
         }
 
         //recyclerview

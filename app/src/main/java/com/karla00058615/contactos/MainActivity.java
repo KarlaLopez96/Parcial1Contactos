@@ -15,10 +15,12 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,ContactosFragment.OnFragmentInteractionListener,
-FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteractionListener, Beta.OnFragmentInteractionListener{
+FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteractionListener, Beta.OnFragmentInteractionListener,
+        ComunicationFragment{
     private final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 123;
     Button contacts,fav;
     ArrayList<Contactos> contactos = new ArrayList<>();
+    ArrayList<Contactos> favoritos = new ArrayList<>();
     int cont = 0;
     private Toolbar toolbar;
 
@@ -99,14 +101,14 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
 
         //se crea el bundle y se mandan todas las contactos
         Bundle bundle = new Bundle();
-        for (int i = 0; i< contactos.size(); i++){
-            bundle.putString("name"+cont, contactos.get(i).getNombre());
-            bundle.putString("email"+cont, contactos.get(i).getEmail());
-            bundle.putString("id"+cont, contactos.get(i).getId());
-            bundle.putBoolean("fav"+cont, contactos.get(i).getFav());
-            bundle.putString("telefono"+cont, contactos.get(i).getTelefono());
-            bundle.putString("direccion"+cont, contactos.get(i).getDirecion());
-            bundle.putString("fecha"+cont, contactos.get(i).getFecha());
+        for (int i = 0; i< favoritos.size(); i++){
+            bundle.putString("name"+cont, favoritos.get(i).getNombre());
+            bundle.putString("email"+cont, favoritos.get(i).getEmail());
+            bundle.putString("id"+cont, favoritos.get(i).getId());
+            bundle.putBoolean("fav"+cont, favoritos.get(i).getFav());
+            bundle.putString("telefono"+cont, favoritos.get(i).getTelefono());
+            bundle.putString("direccion"+cont, favoritos.get(i).getDirecion());
+            bundle.putString("fecha"+cont, favoritos.get(i).getFecha());
             cont++;
         }
         cont = 0;
@@ -274,5 +276,10 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void añadirFav(Contactos contactos) {
+        favoritos.add(contactos);
     }
 }
