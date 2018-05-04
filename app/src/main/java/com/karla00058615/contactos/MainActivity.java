@@ -19,7 +19,7 @@ import com.karla00058615.contactos.Contactos;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,ContactosFragment.OnFragmentInteractionListener,
-FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteractionListener{
+FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteractionListener, Beta.OnFragmentInteractionListener{
     private final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 123;
     Button contacts,fav;
     ArrayList<Contactos> contactos = new ArrayList<>();

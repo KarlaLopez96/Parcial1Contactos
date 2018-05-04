@@ -2,6 +2,7 @@ package com.karla00058615.contactos;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,17 +40,22 @@ public class ContactosFragment extends Fragment {
 
         ArrayList<Contactos> contactosList = new ArrayList<>();
         RecyclerView recyclerView;
-        ContactsAdapter adapter;
+        ContactsAdapter adapter= null;
 
             //filling the planet list
             contactosList = fillList();
 
             //setting the recyclerview
             recyclerView = view.findViewById(R.id.recyclerView);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            linearLayoutManager = new LinearLayoutManager(getContext());
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             adapter = new ContactsAdapter(getContext(), contactosList);
+        }
 
-            //recyclerview
+        //recyclerview
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setAdapter(adapter);
 

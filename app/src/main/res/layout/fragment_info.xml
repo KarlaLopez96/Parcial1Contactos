@@ -83,7 +83,16 @@
         android:layout_height="wrap_content"
         android:text="Call"
         android:layout_below="@id/id"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="140dp"/>
+
+    <Button
+        android:id="@+id/buttonEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/id"
         android:layout_marginTop="140dp"/>
 
     <Button
@@ -92,8 +101,6 @@
         android:layout_height="wrap_content"
         android:text="Share"
         android:layout_below="@id/id"
-        android:layout_marginLeft="240dp"
+        android:layout_marginLeft="260dp"
         android:layout_marginTop="140dp"/>
-    
-
 </RelativeLayout>

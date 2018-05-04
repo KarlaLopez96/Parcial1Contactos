@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
@@ -24,12 +23,12 @@ import android.widget.Toast;
  * {@link InfoFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class InfoFragment extends Fragment {
+public class InfoFragment extends Fragment{
 
     private final int MY_PERMISSIONS_REQUEST_CALL = 123;
     private OnFragmentInteractionListener mListener;
     private TextView nombre,id,direccion,telefono,email,fecha;
-    private Button buttonShare,buttonCall;
+    private Button buttonShare,buttonCall,buttonEdit;
     Bundle bundle;
 
     public InfoFragment() {
@@ -50,23 +49,57 @@ public class InfoFragment extends Fragment {
         telefono = (TextView)view.findViewById(R.id.telefono);
         buttonShare = (Button)view.findViewById(R.id.buttonShare);
         buttonCall = (Button)view.findViewById(R.id.buttonCall);
+        buttonEdit = (Button)view.findViewById(R.id.buttonEdit);
         buttonShare.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 
                 try{
                     final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(Intent.EXTRA_TEXT, nombre.getText().toString() + "/n"+
-                            direccion.getText().toString() + "/n" +
-                            email.getText().toString()+"/n" +
-                            telefono.getText().toString()+"/n");
+                    intent.putExtra(Intent.EXTRA_TEXT,
+                            "Nombre contacto: "+bundle.getString("name")+"\n"+
+                            "Dirección: "+bundle.getString("direccion") +"\n"+
+                            "Email: "+bundle.getString("email") + "\n"+
+                            "Teléfono: "+bundle.getString("telefono")+ "\n"+
+                            "Fecha: "+bundle.getString("fecha"));
                     intent.setType("*/*");
                     startActivity(Intent.createChooser(intent, "Sharing contact"));
                 } catch (Exception e) {
                     e.printStackTrace();
 
                 }
+            }
+        });
+
+        buttonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle cubeta = new Bundle();
+                cubeta.putString("id",bundle.getString("id"));
+                cubeta.putString("nombre",bundle.getString("name"));
+                cubeta.putString("direccion",bundle.getString("direccion"));
+                cubeta.putString("email",bundle.getString("email"));
+                cubeta.putString("telefono",bundle.getString("telefono"));
+                cubeta.putString("fecha",bundle.getString("fecha"));
+
+                //Maneja los fragmentos.
+                android.app.FragmentManager fragmentManager = getActivity().getFragmentManager();
+
+                fragmentManager.executePendingTransactions();
+
+                //Crea una nueva trasacción.
+                android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+                //Crea un fragmento y lo añade.
+                Beta fragment = new Beta();
+                fragment.setArguments(cubeta);
+
+                transaction.replace(R.id.fragmentC, fragment);
+
+                //Realizando cambios.
+                transaction.commit();
             }
         });
 
@@ -161,4 +194,5 @@ public class InfoFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }
