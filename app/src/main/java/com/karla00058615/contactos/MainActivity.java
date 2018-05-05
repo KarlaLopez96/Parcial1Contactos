@@ -1,27 +1,37 @@
 package com.karla00058615.contactos;
 
 import android.Manifest;
+import android.app.SearchManager;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,ContactosFragment.OnFragmentInteractionListener,
-FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteractionListener, Beta.OnFragmentInteractionListener,
-        ComunicationFragment{
+FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteractionListener, EditFragment.OnFragmentInteractionListener,
+        ComunicationFragment,AddFragment.OnFragmentInteractionListener{
     private final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 123;
     Button contacts,fav;
     ArrayList<Contactos> contactos = new ArrayList<>();
     ArrayList<Contactos> favoritos = new ArrayList<>();
     int cont = 0;
+    int id = 0;
     private Toolbar toolbar;
 
     @Override
@@ -30,6 +40,7 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
         setSupportActionBar(toolbar);
         //Peticion de permisos
 
@@ -83,6 +94,8 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
         fragment.setArguments(bundle);
 
         transaction.add(R.id.fragmentC, fragment);
+
+        SearchView searchView = findViewById(R.id.search);
 
         //Realizando cambios.
         transaction.commit();
@@ -268,9 +281,124 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
+        MenuItem searchItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        //SearchManager searchManager = (SearchManager) getSystemService(this.SEARCH_SERVICE);
+        //SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false; //do the default
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                //NOTE: doing anything here is optional, onNewIntent is the important bit
+                if (s.length() > 0) {
+                    ArrayList<Contactos> contactosF = new ArrayList<>();
+                    for (int i = 0; i<contactos.size();i++){
+                        if(contactos.get(i).getNombre().toLowerCase().startsWith(s.toLowerCase())){
+                            contactosF.add(contactos.get(i));
+                        }
+                    }
+                    //Maneja los fragmentos.
+                    android.app.FragmentManager fragmentManager = getFragmentManager();
+
+                    //Crea una nueva trasacción.
+                    android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+                    //Crea un fragmento y lo añade.
+                    ContactosFragment fragment = new ContactosFragment();
+
+                    //se crea el bundle y se mandan todas las contactos
+                    Bundle bundle = new Bundle();
+                    for (int i = 0; i< contactosF.size(); i++){
+                        bundle.putString("name"+cont, contactosF.get(i).getNombre());
+                        bundle.putString("email"+cont, contactosF.get(i).getEmail());
+                        bundle.putString("id"+cont, contactosF.get(i).getId());
+                        bundle.putBoolean("fav"+cont, contactosF.get(i).getFav());
+                        bundle.putString("telefono"+cont, contactosF.get(i).getTelefono());
+                        bundle.putString("direccion"+cont, contactosF.get(i).getDirecion());
+                        bundle.putString("fecha"+cont, contactosF.get(i).getFecha());
+                        cont++;
+                    }
+                    cont = 0;
+                    //se manda el bundle al fragment
+                    fragment.setArguments(bundle);
+
+                    transaction.replace(R.id.fragmentC, fragment);
+
+                    //Realizando cambios.
+                    transaction.commit();
+                } else if (s.length() == 0) {
+                    //Maneja los fragmentos.
+                    android.app.FragmentManager fragmentManager = getFragmentManager();
+
+                    //Crea una nueva trasacción.
+                    android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+                    //Crea un fragmento y lo añade.
+                    ContactosFragment fragment = new ContactosFragment();
+
+                    //se crea el bundle y se mandan todas las contactos
+                    Bundle bundle = new Bundle();
+                    for (int i = 0; i< contactos.size(); i++){
+                        bundle.putString("name"+cont, contactos.get(i).getNombre());
+                        bundle.putString("email"+cont, contactos.get(i).getEmail());
+                        bundle.putString("id"+cont, contactos.get(i).getId());
+                        bundle.putBoolean("fav"+cont, contactos.get(i).getFav());
+                        bundle.putString("telefono"+cont, contactos.get(i).getTelefono());
+                        bundle.putString("direccion"+cont, contactos.get(i).getDirecion());
+                        bundle.putString("fecha"+cont, contactos.get(i).getFecha());
+                        cont++;
+                    }
+                    cont = 0;
+                    //se manda el bundle al fragment
+                    fragment.setArguments(bundle);
+
+                    transaction.replace(R.id.fragmentC, fragment);
+
+                    //Realizando cambios.
+                    transaction.commit();
+                }
+                return false;
+            }
+
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.add:
+                //Maneja los fragmentos.
+                android.app.FragmentManager fragmentManager = getFragmentManager();
+
+                //Crea una nueva trasacción.
+                android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+                //Crea un fragmento y lo añade.
+                AddFragment fragment = new AddFragment();
+
+                transaction.replace(R.id.fragmentC, fragment);
+
+                //Realizando cambios.
+                transaction.commit();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            final String query = intent.getStringExtra(SearchManager.QUERY);
+            //TODO: actually do some filtering / set results
+        }
     }
 
     @Override
@@ -359,5 +487,45 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
 
         //Realizando cambios.
         transaction.commit();
+    }
+
+    @Override
+    public void enviarContactoNuevo(String nombre, String direccion, String email, String telefono, String fecha) {
+
+        contactos.add(new Contactos(String.valueOf(id),nombre,email,false,telefono,direccion,fecha));
+
+        id++;
+
+        //Maneja los fragmentos.
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+
+        //Crea una nueva trasacción.
+        android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        //Crea un fragmento y lo añade.
+        ContactosFragment fragment = new ContactosFragment();
+
+        //se crea el bundle y se mandan todas las contactos
+        Bundle bundle = new Bundle();
+        for (int i = 0; i< contactos.size(); i++){
+            bundle.putString("name"+cont, contactos.get(i).getNombre());
+            bundle.putString("email"+cont, contactos.get(i).getEmail());
+            bundle.putString("id"+cont, contactos.get(i).getId());
+            bundle.putBoolean("fav"+cont, contactos.get(i).getFav());
+            bundle.putString("telefono"+cont, contactos.get(i).getTelefono());
+            bundle.putString("direccion"+cont, contactos.get(i).getDirecion());
+            bundle.putString("fecha"+cont, contactos.get(i).getFecha());
+            cont++;
+        }
+        cont = 0;
+        //se manda el bundle al fragment
+        fragment.setArguments(bundle);
+
+        transaction.replace(R.id.fragmentC, fragment);
+
+        //Realizando cambios.
+        transaction.commit();
+
+        //String id, String nombre, String email, boolean fav,String telefono, String direcion, String fecha
     }
 }

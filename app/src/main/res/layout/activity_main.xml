@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="Contactos"
             android:textColor="#fff"
-            android:background="#4a148c"
+            android:background="#4caf50"
             android:layout_weight="1"/>
 
         <Button
@@ -38,14 +38,14 @@
             android:id="@+id/button_favoritos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#4a148c"
+            android:background="#4caf50"
             android:text="Favoritos"
             android:layout_weight="1"/>
     </LinearLayout>
 
     <android.support.v7.widget.FitWindowsFrameLayout
         android:id="@+id/fragmentC"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

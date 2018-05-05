@@ -1,6 +1,5 @@
 package com.karla00058615.contactos;
 
-import android.app.FragmentManager;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,18 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Beta.OnFragmentInteractionListener} interface
+ * {@link EditFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Beta#newInstance} factory method to
+ * Use the {@link EditFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Beta extends Fragment {
+public class EditFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -33,7 +31,7 @@ public class Beta extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Beta() {
+    public EditFragment() {
         // Required empty public constructor
     }
 
@@ -43,11 +41,11 @@ public class Beta extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Beta.
+     * @return A new instance of fragment EditFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Beta newInstance(String param1, String param2) {
-        Beta fragment = new Beta();
+    public static EditFragment newInstance(String param1, String param2) {
+        EditFragment fragment = new EditFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,7 +71,7 @@ public class Beta extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_beta, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit, container, false);
 
         nombre = (EditText) view.findViewById(R.id.edit_Name);
         direccion = (EditText)view.findViewById(R.id.edit_Direccion);

@@ -96,7 +96,7 @@ public class InfoFragment extends Fragment{
                 android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
 
                 //Crea un fragmento y lo añade.
-                Beta fragment = new Beta();
+                EditFragment fragment = new EditFragment();
                 fragment.setArguments(cubeta);
 
                 transaction.replace(R.id.fragmentC, fragment);
