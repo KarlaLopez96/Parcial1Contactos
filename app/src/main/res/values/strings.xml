@@ -3,5 +3,25 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contactos">Contactos</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="nombre">Nombre</string>
+    <string name="direccion">Dirección</string>
+    <string name="correo">Correo</string>
+    <string name="fecha">Fecha</string>
+    <string name="telefono">Teléfono</string>
+    <string name="agregar">Agregar</string>
+    <string name="editar_nombre">Editar nombre</string>
+    <string name="editar_direccion">Editar dirección</string>
+    <string name="editar_correo">Editar correo</string>
+    <string name="editar_fecha">Editar fecha</string>
+    <string name="editar_telefono">Editar teléfono</string>
+    <string name="guardar">Guardar</string>
+    <string name="info_id">ID</string>
+    <string name="info_direccion">Dirección</string>
+    <string name="info_correo">Correo</string>
+    <string name="info_telefono">Teléfono</string>
+    <string name="info_fecha">Fecha</string>
+    <string name="info_nombre">Nombre</string>
 
 </resources>

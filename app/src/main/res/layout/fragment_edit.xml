@@ -18,7 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="HOLIWIA"
+        android:hint="@string/editar_nombre"
+        android:textColorHint="#000"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/imageContact2"
         android:textColor="#000"/>
@@ -29,13 +30,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="KarlaLopez96"
+        android:textColorHint="#000"
+        android:hint="@string/editar_direccion"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/edit_Name"
         android:layout_marginTop="8dp"
         android:textColor="#000" />
 
     <EditText
+        android:textColorHint="#000"
         android:id="@+id/edit_Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,36 +46,39 @@
         android:layout_below="@id/edit_Name"
         android:layout_marginTop="70dp"
         android:layout_marginLeft="20dp"
-        android:text="00058615@uca.edu.sv"
+        android:hint="@string/editar_correo"
         android:textColor="#000" />
 
     <EditText
+        android:ellipsize="end"
+        android:textColorHint="#000"
         android:id="@+id/edit_Fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/buttonAccept"
         android:layout_marginLeft="50dp"
-        android:text="28/03/2108"
+        android:hint="@string/editar_fecha"
         android:textColor="#000"
         android:textSize="16sp" />
 
     <EditText
+        android:textColorHint="#000"
         android:id="@+id/edit_Telefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="73459867"
+        android:hint="@string/editar_telefono"
         android:layout_below="@+id/edit_Name"
         android:layout_toRightOf="@+id/edit_Name"
         android:layout_marginTop="70dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="5dp"
         android:textColor="#000" />
 
     <Button
         android:id="@+id/buttonAccept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Accept"
+        android:text="@string/guardar"
         android:layout_marginLeft="260dp"
         android:layout_below="@id/edit_Telefono"
         android:layout_marginTop="40dp"/>

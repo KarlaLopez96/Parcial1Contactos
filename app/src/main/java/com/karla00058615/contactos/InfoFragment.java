@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -29,7 +30,7 @@ public class InfoFragment extends Fragment{
     private final int MY_PERMISSIONS_REQUEST_CALL = 123;
     private OnFragmentInteractionListener mListener;
     private TextView nombre,id,direccion,telefono,email,fecha;
-    private Button buttonShare,buttonCall,buttonEdit;
+    private ImageButton buttonShare,buttonCall,buttonEdit;
     Bundle bundle;
 
     public InfoFragment() {
@@ -48,9 +49,9 @@ public class InfoFragment extends Fragment{
         email =(TextView) view.findViewById(R.id.email);
         fecha = (TextView)view.findViewById(R.id.fecha) ;
         telefono = (TextView)view.findViewById(R.id.telefono);
-        buttonShare = (Button)view.findViewById(R.id.buttonShare);
-        buttonCall = (Button)view.findViewById(R.id.buttonCall);
-        buttonEdit = (Button)view.findViewById(R.id.buttonEdit);
+        buttonShare = (ImageButton) view.findViewById(R.id.buttonShare);
+        buttonCall = (ImageButton) view.findViewById(R.id.buttonCall);
+        buttonEdit = (ImageButton) view.findViewById(R.id.buttonEdit);
         buttonShare.setOnClickListener(new View.OnClickListener() {
 
             @Override

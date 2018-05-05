@@ -15,10 +15,11 @@
 
 
     <TextView
+        android:textColorHint="#000"
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HOLIWIA"
+        android:hint="@string/info_nombre"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/imageContact"
         android:layout_marginTop="20dp"
@@ -28,7 +29,7 @@
         android:id="@+id/id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ing. Informatica"
+        android:hint="@string/info_id"
         android:layout_centerHorizontal="true"
         android:textColor="#000"
         android:layout_marginTop="30dp"
@@ -36,31 +37,34 @@
         android:layout_margin="8dp"/>
 
     <TextView
+        android:textColorHint="#000"
         android:id="@+id/direccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="KarlaLopez96"
+        android:hint="@string/info_direccion"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/id"
         android:layout_marginTop="10dp"
         android:textColor="#000" />
 
     <TextView
+        android:textColorHint="#000"
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/id"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="20dp"
-        android:text="00058615@uca.edu.sv"
+        android:hint="@string/info_correo"
         android:textColor="#000" />
 
 
     <TextView
+        android:textColorHint="#000"
         android:id="@+id/telefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="73459867"
+        android:hint="@string/info_telefono"
         android:layout_below="@+id/id"
         android:layout_toRightOf="@+id/id"
         android:layout_marginTop="60dp"
@@ -68,39 +72,44 @@
         android:textColor="#000" />
 
     <TextView
+        android:ellipsize="end"
+        android:textColorHint="#000"
         android:id="@+id/fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="28/03/2108"
+        android:hint="@string/info_fecha"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/email"
         android:layout_marginTop="20dp"
         android:textColor="#000" />
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Call"
+        android:src="@drawable/call"
+        android:background="#81c784"
         android:layout_below="@id/id"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="140dp"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit"
+        android:src="@drawable/edit"
+        android:background="#81c784"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/id"
         android:layout_marginTop="140dp"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonShare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Share"
+        android:src="@drawable/share"
+        android:background="#81c784"
         android:layout_below="@id/id"
-        android:layout_marginLeft="260dp"
+        android:layout_marginLeft="280dp"
         android:layout_marginTop="140dp"/>
 </RelativeLayout>
