@@ -1,5 +1,6 @@
 package com.karla00058615.contactos;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -63,8 +64,9 @@ public class Beta extends Fragment {
         }
     }
 
+    ComunicationFragment CF;
     private Bundle bundle;
-    private EditText nombre,id,direccion,telefono,email,fecha;
+    private EditText nombre,direccion,telefono,email,fecha;
     private Button done;
 
     @Override
@@ -83,16 +85,12 @@ public class Beta extends Fragment {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Bundle cubeta = new Bundle();
-                cubeta.putString("id",id.getText().toString());
-                cubeta.putString("nombre",nombre.getText().toString());
-                cubeta.putString("direccion",direccion.getText().toString());
-                cubeta.putString("email",email.getText().toString());
-                cubeta.putString("telefono",telefono.getText().toString());
-                cubeta.putString("fecha",fecha.getText().toString());
+                CF.enviarContactoEditado(bundle.getString("id"),nombre.getText().toString(),
+                        direccion.getText().toString(),email.getText().toString(),
+                        telefono.getText().toString(),fecha.getText().toString());
 
                 //Maneja los fragmentos.
-                android.app.FragmentManager fragmentManager = getActivity().getFragmentManager();
+               /* FragmentManager fragmentManager = getActivity().getFragmentManager() ;
 
                 fragmentManager.executePendingTransactions();
 
@@ -101,7 +99,6 @@ public class Beta extends Fragment {
 
                 //Crea un fragmento y lo añade.
                 ContactosFragment fragment = new ContactosFragment();
-                fragment.setArguments(cubeta);
 
                 transaction.replace(R.id.fragmentC, fragment);
 
@@ -130,6 +127,7 @@ public class Beta extends Fragment {
 
     @Override
     public void onAttach(Context context) {
+        CF = (ComunicationFragment) getActivity();
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;

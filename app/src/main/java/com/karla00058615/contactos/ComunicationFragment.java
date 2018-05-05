@@ -10,4 +10,8 @@ import java.util.ArrayList;
 
 public interface ComunicationFragment {
     public void añadirFav(Contactos contactos);
+
+    public void quitarFav(Contactos contactos);
+
+    public void enviarContactoEditado(String id,String nombre,String direccion,String email,String telefono,String fecha);
 }

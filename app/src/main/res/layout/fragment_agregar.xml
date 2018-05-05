@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.karla00058615.contactos.Beta">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageContact2"
+        android:layout_width="176dp"
+        android:layout_height="176dp"
+        android:src="@drawable/contact"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"/>
+
+
+    <EditText
+        android:id="@+id/add_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="HOLIWIS"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imageContact2"
+        android:textColor="#000"/>
+
+
+    <EditText
+        android:id="@+id/add_Direccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="KarlaLopez96"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/add_Name"
+        android:layout_marginTop="8dp"
+        android:textColor="#000" />
+
+    <EditText
+        android:id="@+id/add_Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_below="@id/add_Name"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="20dp"
+        android:text="00058615@uca.edu.sv"
+        android:textColor="#000" />
+
+    <EditText
+        android:id="@+id/add_Fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonAdd"
+        android:layout_marginLeft="50dp"
+        android:focusable="false"
+        android:clickable="true"
+        android:text="28/03/2108"
+        android:textColor="#000"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/add_Telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="73459867"
+        android:layout_below="@+id/add_Name"
+        android:layout_toRightOf="@+id/add_Name"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="#000" />
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:layout_marginLeft="260dp"
+        android:layout_below="@id/add_Telefono"
+        android:layout_marginTop="40dp"/>
+
+</RelativeLayout>
+

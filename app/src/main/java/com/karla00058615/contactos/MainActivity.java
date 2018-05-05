@@ -279,7 +279,85 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
     }
 
     @Override
-    public void añadirFav(Contactos contactos) {
-        favoritos.add(contactos);
+    public void añadirFav(Contactos contacto) {
+        boolean flag = false;
+        for (int i = 0 ; i < favoritos.size();i++){
+            if(favoritos.get(i).equals(contacto.getId())){
+                flag = true;
+            }
+        }
+        if(!flag){
+            favoritos.add(contacto);
+            for(int i = 0;i<contactos.size();i++){
+                if(contactos.get(i).getId().equals(contacto.getId())){
+                    contactos.get(i).setFav(true);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void quitarFav(Contactos contacto) {
+        for (int i = 0;i<favoritos.size();i++){
+            if(favoritos.get(i).getId().equals(contacto.getId())){
+                favoritos.remove(i);
+            }
+        }
+        for(int i = 0;i<contactos.size();i++){
+            if(contactos.get(i).getId().equals(contacto.getId())){
+                contactos.get(i).setFav(false);
+            }
+        }
+    }
+
+    @Override
+    public void enviarContactoEditado(String id,String nombre, String direccion, String email, String telefono, String fecha) {
+        for(int i = 0;i<contactos.size();i++){
+            if(contactos.get(i).getId().equals(id)){
+                contactos.get(i).setNombre(nombre);
+                contactos.get(i).setDirecion(direccion);
+                contactos.get(i).setEmail(email);
+                contactos.get(i).setTelefono(telefono);
+                contactos.get(i).setFecha(fecha);
+            }
+        }
+        for (int i = 0;i<favoritos.size();i++){
+            if(favoritos.get(i).getId().equals(id)){
+                favoritos.get(i).setNombre(nombre);
+                favoritos.get(i).setDirecion(direccion);
+                favoritos.get(i).setEmail(email);
+                favoritos.get(i).setTelefono(telefono);
+                favoritos.get(i).setFecha(fecha);
+            }
+        }
+        //Maneja los fragmentos.
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+
+        //Crea una nueva trasacción.
+        android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        //Crea un fragmento y lo añade.
+        ContactosFragment fragment = new ContactosFragment();
+
+        //se crea el bundle y se mandan todas las contactos
+        Bundle bundle = new Bundle();
+        for (int i = 0; i< contactos.size(); i++){
+            bundle.putString("name"+cont, contactos.get(i).getNombre());
+            bundle.putString("email"+cont, contactos.get(i).getEmail());
+            bundle.putString("id"+cont, contactos.get(i).getId());
+            bundle.putBoolean("fav"+cont, contactos.get(i).getFav());
+            bundle.putString("telefono"+cont, contactos.get(i).getTelefono());
+            bundle.putString("direccion"+cont, contactos.get(i).getDirecion());
+            bundle.putString("fecha"+cont, contactos.get(i).getFecha());
+            cont++;
+        }
+        cont = 0;
+        //se manda el bundle al fragment
+        fragment.setArguments(bundle);
+
+        transaction.replace(R.id.fragmentC, fragment);
+
+        //Realizando cambios.
+        transaction.commit();
     }
 }

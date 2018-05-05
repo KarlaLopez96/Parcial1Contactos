@@ -53,14 +53,24 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     @Override
     public void onBindViewHolder(final ContactsViewHolder holder, final int position) {
         holder.titleTxtView.setText(contactosList.get(position).getNombre());
+        if(contactosList.get(position).getFav()){
+            holder.fav.setImageDrawable(context.getResources().getDrawable(R.drawable.favo3));
+        }else{
+            holder.fav.setImageDrawable(context.getResources().getDrawable(R.drawable.favo2));
+        }
         holder.fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                contactosList.get(position).setFav(true);
-                CF.añadirFav(contactosList.get(position));
-                Toast.makeText(context,"contacto agregado",Toast.LENGTH_LONG).show();
-            }
-        });
+                if(!contactosList.get(position).getFav()){
+                    contactosList.get(position).setFav(true);
+                    CF.añadirFav(contactosList.get(position));
+                    holder.fav.setImageDrawable(context.getResources().getDrawable(R.drawable.favo3));
+                }else{
+                    holder.fav.setImageDrawable(context.getResources().getDrawable(R.drawable.favo2));
+                    contactosList.get(position).setFav(false);
+                    CF.quitarFav(contactosList.get(position));
+                }
+            }});
         //holder.img.setImageDrawable(contactosList.get(position).getImg());
     }
 
