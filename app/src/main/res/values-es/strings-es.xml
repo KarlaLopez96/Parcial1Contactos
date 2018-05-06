@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Contactos</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contacts">Contactos</string>
+    <string name="favorites">Favoritos</string>
+    <string name="name">Nombre</string>
+    <string name="direction">Dirección</string>
+    <string name="email">Correo</string>
+    <string name="date">Fecha</string>
+    <string name="phone">Teléfono</string>
+    <string name="add">Agregar</string>
+    <string name="edit_name">Editar Nombre</string>
+    <string name="edit_direction">Editar Dirección</string>
+    <string name="edit_email">Editar Correo</string>
+    <string name="edit_date">Editar Fecha</string>
+    <string name="edit_phone">Editar Teléfono</string>
+    <string name="save">Guardar</string>
+    <string name="info_name">Nombre</string>
+    <string name="info_id">ID</string>
+    <string name="info_direction">Dirección</string>
+    <string name="info_email">Correo</string>
+    <string name="info_phone">Teléfono</string>
+    <string name="info_date">Fecha</string>
+
+</resources>

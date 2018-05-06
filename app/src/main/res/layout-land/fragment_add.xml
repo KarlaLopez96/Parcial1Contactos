@@ -8,30 +8,28 @@
         android:id="@+id/imageContact2"
         android:layout_width="176dp"
         android:layout_height="176dp"
-        android:src="@drawable/contact"
+        android:src="@drawable/contacto"
         android:layout_centerHorizontal="true"
         android:layout_margin="8dp"/>
 
 
     <EditText
-        android:textColorHint="#000"
         android:id="@+id/add_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:hint="@string/nombre"
+        android:hint="@string/name"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/imageContact2"
         android:textColor="#000"/>
 
 
     <EditText
-        android:textColorHint="#000"
         android:id="@+id/add_Direccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:hint="@string/direccion"
+        android:hint="@string/direction"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/add_Name"
         android:layout_marginTop="8dp"
@@ -45,11 +43,10 @@
         android:layout_below="@id/add_Name"
         android:layout_marginTop="70dp"
         android:layout_marginLeft="20dp"
-        android:hint="@string/correo"
+        android:hint="@string/email"
         android:textColor="#000" />
 
     <EditText
-        android:textColorHint="#000"
         android:id="@+id/add_Fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,18 +54,17 @@
         android:layout_marginLeft="50dp"
         android:focusable="false"
         android:clickable="true"
-        android:hint="@string/fecha"
+        android:hint="@string/date"
         android:textColor="#000"
         android:textSize="16sp" />
 
     <EditText
-        android:textColorHint="#000"
         android:id="@+id/add_Telefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:phoneNumber="true"
-        android:hint="@string/telefono"
+        android:hint="@string/phone"
         android:layout_below="@+id/add_Name"
         android:layout_toRightOf="@+id/add_Name"
         android:layout_marginTop="70dp"
@@ -79,7 +75,7 @@
         android:id="@+id/buttonAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/agregar"
+        android:text="@string/add"
         android:layout_marginLeft="260dp"
         android:layout_below="@id/add_Telefono"
         android:layout_marginTop="40dp"/>
