@@ -32,7 +32,7 @@
         android:hint="@string/edit_direction"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/edit_Name"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:textColor="#000" />
 
     <EditText
@@ -42,7 +42,7 @@
         android:textSize="16sp"
         android:layout_below="@id/edit_Name"
         android:layout_marginTop="70dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="30dp"
         android:hint="@string/edit_email"
         android:textColor="#000" />
 
@@ -51,30 +51,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/buttonAccept"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="30dp"
         android:hint="@string/edit_date"
         android:textColor="#000"
         android:textSize="16sp" />
 
     <EditText
-        android:textColorHint="#000"
         android:id="@+id/edit_Telefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:layout_alignBaseline="@+id/edit_Email"
+        android:layout_alignBottom="@+id/edit_Email"
+        android:layout_toEndOf="@+id/edit_Name"
         android:hint="@string/edit_phone"
-        android:layout_below="@+id/edit_Name"
-        android:layout_toRightOf="@+id/edit_Name"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="5dp"
-        android:textColor="#000" />
+        android:textColor="#000"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/buttonAccept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save"
-        android:layout_marginLeft="260dp"
+        android:layout_marginLeft="230dp"
         android:layout_below="@id/edit_Telefono"
         android:layout_marginTop="40dp"/>
 

@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/id"
         android:layout_marginTop="60dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="30dp"
         android:hint="@string/info_email"
         android:textColor="#000" />
 
@@ -85,7 +85,7 @@
         android:src="@drawable/call"
         android:background="#aab6fe"
         android:layout_below="@id/id"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="140dp"/>
 
     <ImageButton

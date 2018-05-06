@@ -80,33 +80,20 @@ public class EditFragment extends Fragment {
         telefono = (EditText)view.findViewById(R.id.edit_Telefono);
         done = (Button) view.findViewById(R.id.buttonAccept);
 
+        //listener del boton que representa que el usuario termino de editar a su contacto
+        //y mandarlo al main por medio de la interfaz
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CF.enviarContactoEditado(bundle.getString("id"),nombre.getText().toString(),
                         direccion.getText().toString(),email.getText().toString(),
                         telefono.getText().toString(),fecha.getText().toString());
-
-                //Maneja los fragmentos.
-               /* FragmentManager fragmentManager = getActivity().getFragmentManager() ;
-
-                fragmentManager.executePendingTransactions();
-
-                //Crea una nueva trasacción.
-                android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-                //Crea un fragmento y lo añade.
-                ContactosFragment fragment = new ContactosFragment();
-
-                transaction.replace(R.id.fragmentC, fragment);
-
-                //Realizando cambios.
-                transaction.commit();*/
             }
         });
 
+        //obtencion de datos por medio del bundle
         bundle = getArguments();
-
+        //se insertan los datos en los editText para que el usuario pueda cambiarlos
         nombre.setText(bundle.getString("nombre"));
         direccion.setText(bundle.getString("direccion"));
         email.setText(bundle.getString("email"));
@@ -125,6 +112,7 @@ public class EditFragment extends Fragment {
 
     @Override
     public void onAttach(Context context) {
+        //vincla la interfaz
         CF = (ComunicationFragment) getActivity();
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {

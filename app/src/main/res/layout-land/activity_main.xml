@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.karla00058615.contactos.MainActivity"
+    android:orientation="vertical"
+    android:id="@+id/principal_layout">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="11"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_gravity="bottom"
+            android:id="@+id/button_peliculas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contacts"
+            android:textColor="#000"
+            android:background="#5c6bc0"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_gravity="bottom"
+            android:onClick="favoritos"
+            android:textColor="#000"
+            android:id="@+id/button_favoritos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#5c6bc0"
+            android:text="@string/favorites"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.FitWindowsFrameLayout
+            android:id="@+id/fragmentC"
+            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.FitWindowsFrameLayout>
+
+        <android.support.v7.widget.FitWindowsFrameLayout
+            android:id="@+id/fragmentB"
+            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.FitWindowsFrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

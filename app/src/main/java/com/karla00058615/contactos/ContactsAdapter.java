@@ -45,6 +45,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     public ContactsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.layout_list, parent, false);
+        //se enlaza la interfaz
         CF = (ComunicationFragment) activity;
 
         return new ContactsViewHolder(v,context,contactosList);
@@ -53,14 +54,20 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     @Override
     public void onBindViewHolder(final ContactsViewHolder holder, final int position) {
         holder.titleTxtView.setText(contactosList.get(position).getNombre());
+        //al poner cada dato en la lista se pregunt si este es uno favorito
+        //esto es necesario para setear la etrella marcada o no
         if(contactosList.get(position).getFav()){
             holder.fav.setImageDrawable(context.getResources().getDrawable(R.drawable.favo3));
         }else{
             holder.fav.setImageDrawable(context.getResources().getDrawable(R.drawable.favo2));
         }
+        //listeenr de cada imgButon con forma de estrella
         holder.fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //se pregunt si la etrell a la que e le hace tab contiene un
+                //contacto que es favorito o no y dependiendo marca estrella o no
+                //ademas de enviar el contacto o quitarlos de la lista de favoritos
                 if(!contactosList.get(position).getFav()){
                     contactosList.get(position).setFav(true);
                     CF.añadirFav(contactosList.get(position));
@@ -96,6 +103,9 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             fav = itemView.findViewById(R.id.button_fav);
         }
 
+        //metodo para manejr el tab de un item de la lista
+        //ademas de pasar ese item por un bundle y reemplazar el framento
+        //por el de informacion
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();

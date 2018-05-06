@@ -4,9 +4,11 @@ package com.karla00058615.contactos;
  * Created by Karla on 21/4/2018.
  */
 
+//objeto contacos que tiene la descripcion basica de un contacto
 public class Contactos {
 
     private String id;
+    //booleano que se usa para determinar si es un favorito o no
     private  boolean fav;
     private String nombre, email,telefono,direcion,fecha;
 

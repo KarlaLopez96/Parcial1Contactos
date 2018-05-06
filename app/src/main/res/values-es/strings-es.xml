@@ -10,7 +10,7 @@
     <string name="email">Correo</string>
     <string name="date">Fecha</string>
     <string name="phone">Teléfono</string>
-    <string name="add">Agregar</string>
+    <string name="Add">Agregar</string>
     <string name="edit_name">Editar Nombre</string>
     <string name="edit_direction">Editar Dirección</string>
     <string name="edit_email">Editar Correo</string>

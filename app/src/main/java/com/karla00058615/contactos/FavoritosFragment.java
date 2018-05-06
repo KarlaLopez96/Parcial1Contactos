@@ -39,10 +39,10 @@ public class FavoritosFragment extends Fragment {
         RecyclerView recyclerView;
         ContactsAdapter adapter = null;
 
-        //filling the planet list
+        //llenado del listado
         contactosList = fillList();
 
-        //setting the recyclerview
+        //configuracion del recyclerView
         recyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -83,14 +83,16 @@ public class FavoritosFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
+    //llenado de los contactos
     private ArrayList<Contactos> fillList(){
 
         int cont = 0;
         int holder;
         Bundle bundle = getArguments();
         ArrayList<Contactos> l = new ArrayList<>();
-
+        //se preguntan si los contactos son favoritos solo en caso de algun error
+        //luego se insertan en el listado (se extraen del bundle)
+        //todo esto proveniente del main
         for (int i = 0;i < (bundle.size())/7;i++){
             if(bundle.getBoolean("fav"+cont)){
                 l.add(new Contactos(bundle.getString("id"+cont),bundle.getString("name"+cont)

@@ -44,6 +44,7 @@ public class AddFragment extends Fragment implements DatePickerDialog.OnDateSetL
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //se enlazan las variables con los campos del activity
         View view = inflater.inflate(R.layout.fragment_add, container, false);
         nombre = view.findViewById(R.id.add_Name);
         direccion= view.findViewById(R.id.add_Direccion);
@@ -51,6 +52,7 @@ public class AddFragment extends Fragment implements DatePickerDialog.OnDateSetL
         telefono = view.findViewById(R.id.add_Telefono);
         fecha = view.findViewById(R.id.add_Fecha);
         add = view.findViewById(R.id.buttonAdd);
+        //listener que envia por medio de la interfaz el contacto a agregar
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +61,7 @@ public class AddFragment extends Fragment implements DatePickerDialog.OnDateSetL
                         telefono.getText().toString(),fecha.getText().toString());
             }
         });
-
+        //se sete la fecha actual en el campo de fecha
         myCalendar = Calendar.getInstance();
         day = myCalendar.get(Calendar.DAY_OF_MONTH);
         month = myCalendar.get(Calendar.MONTH);
@@ -68,7 +70,8 @@ public class AddFragment extends Fragment implements DatePickerDialog.OnDateSetL
         month++;
 
         fecha.setText(day+"/"+month+"/"+year);
-
+        //////////////////////////////////////////////////////////////
+        //listener que manda a llamar al dialog fragment que muestra el date picker
         fecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,6 +93,7 @@ public class AddFragment extends Fragment implements DatePickerDialog.OnDateSetL
 
     @Override
     public void onAttach(Context context) {
+        //se vincula la inerfaz
         CF = (ComunicationFragment) getActivity();
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -126,11 +130,13 @@ public class AddFragment extends Fragment implements DatePickerDialog.OnDateSetL
         void onFragmentInteraction(Uri uri);
     }
 
+    //framente dialog que esta configurado para mostrar y setear la fecha
     @SuppressLint("ValidFragment")
     public class SelectDateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
+            //al crear el dialog de la fecha esta se pone en la fecha actual
             final Calendar calendar = Calendar.getInstance();
             int yy = calendar.get(Calendar.YEAR);
             int mm = calendar.get(Calendar.MONTH);
@@ -139,9 +145,11 @@ public class AddFragment extends Fragment implements DatePickerDialog.OnDateSetL
         }
 
         public void onDateSet(DatePicker view, int yy, int mm, int dd) {
+            //se encarga de cambiar el dalog con forme el usuario prefiera
             populateSetDate(yy, mm+1, dd);
         }
         public void populateSetDate(int year, int month, int day) {
+            //se setea la fecha seleccionada en el campo de fecha
             fecha.setText(month+"/"+day+"/"+year);
         }
 

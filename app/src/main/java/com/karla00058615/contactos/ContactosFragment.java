@@ -37,15 +37,15 @@ public class ContactosFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_contacts, container, false);
-
+        //cracion de vriables necesarias para el listado
         ArrayList<Contactos> contactosList = new ArrayList<>();
         RecyclerView recyclerView;
         ContactsAdapter adapter= null;
 
-            //filling the planet list
+            //llenado de los contactos que se pasaron desde el bundle
             contactosList = fillList();
 
-            //setting the recyclerview
+            //configuracion del recyclerView
             recyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -91,8 +91,9 @@ public class ContactosFragment extends Fragment {
         int cont = 0;
         Bundle bundle = getArguments();
         ArrayList<Contactos> l = new ArrayList<>();
-
+        //se recorre el bundle para obtener los contactos enviados
         for (int i = 0;i < (bundle.size())/7;i++){
+            //se guarda el contacto enviado desde el main con el bundle
             l.add(new Contactos(bundle.getString("id"+cont),bundle.getString("name"+cont)
                     ,bundle.getString("email"+cont),bundle.getBoolean("fav"+cont)
                     ,bundle.getString("telefono"+cont),bundle.getString("direccion"+cont),

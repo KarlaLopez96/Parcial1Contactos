@@ -52,6 +52,9 @@ public class InfoFragment extends Fragment{
         buttonShare = (ImageButton) view.findViewById(R.id.buttonShare);
         buttonCall = (ImageButton) view.findViewById(R.id.buttonCall);
         buttonEdit = (ImageButton) view.findViewById(R.id.buttonEdit);
+        //listener que manda a llamar el intento de compartir la info del contacto
+        //por medio de este listener se obienen los datos del bundle y estos se mandan
+        //a aplicaciones que reciban textos
         buttonShare.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -75,6 +78,8 @@ public class InfoFragment extends Fragment{
             }
         });
 
+        //se manda a llamar el framento editar y se le pasan los mismos datos
+        //recibidos por el bundle
         buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,6 +121,8 @@ public class InfoFragment extends Fragment{
         telefono.setText("Móvil: "+bundle.getString("telefono"));
         fecha.setText("Fecha: "+bundle.getString("fecha"));
 
+        //listener que manda a llamar el intento de llamar al contacto usando el numero
+        //que se obtuvo del bundle
         buttonCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,13 +144,15 @@ public class InfoFragment extends Fragment{
 
         return view;
     }
-
+    //se inicia el intento de llamada
     public void Call(){
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:"+bundle.getString("telefono")));
         startActivity(intent);
     }
 
+    //metodo que verifica si se tienen los permisos necesarios para la llamada
+    //de no ser asi se piden al usuario y de tenerlos continua con la aplicacion
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

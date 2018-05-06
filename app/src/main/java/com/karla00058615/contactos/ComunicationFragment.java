@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by Karla on 4/5/2018.
  */
-
+//clase interfaz que comunica fragmentos con la actvity
 public interface ComunicationFragment {
     public void añadirFav(Contactos contactos);
 
