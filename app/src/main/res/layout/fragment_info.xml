@@ -18,7 +18,7 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/info_nombre"
+        android:hint="@string/info_name"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/imageContact"
         android:layout_marginTop="20dp"
@@ -39,7 +39,7 @@
         android:id="@+id/direccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/info_direccion"
+        android:hint="@string/info_direction"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/id"
         android:layout_marginTop="10dp"
@@ -52,7 +52,7 @@
         android:layout_below="@id/id"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="20dp"
-        android:hint="@string/info_correo"
+        android:hint="@string/info_email"
         android:textColor="#000" />
 
 
@@ -60,7 +60,7 @@
         android:id="@+id/telefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/info_telefono"
+        android:hint="@string/info_phone"
         android:layout_below="@+id/id"
         android:layout_toRightOf="@+id/id"
         android:layout_marginTop="60dp"
@@ -72,7 +72,7 @@
         android:id="@+id/fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/info_fecha"
+        android:hint="@string/info_date"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/email"
         android:layout_marginTop="20dp"
@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/call"
-        android:background="#b2dfdb"
+        android:background="#aab6fe"
         android:layout_below="@id/id"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="140dp"/>
@@ -93,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/edit"
-        android:background="#b2dfdb"
+        android:background="#aab6fe"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/id"
         android:layout_marginTop="140dp"/>
@@ -103,7 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/share"
-        android:background="#b2dfdb"
+        android:background="#aab6fe"
         android:layout_below="@id/id"
         android:layout_marginLeft="280dp"
         android:layout_marginTop="140dp"/>

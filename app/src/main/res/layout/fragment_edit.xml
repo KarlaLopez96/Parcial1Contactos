@@ -18,8 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:hint="@string/editar_nombre"
-        android:textColorHint="#000"
+        android:hint="@string/edit_name"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/imageContact2"
         android:textColor="#000"/>
@@ -30,15 +29,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textColorHint="#000"
-        android:hint="@string/editar_direccion"
+        android:hint="@string/edit_direction"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/edit_Name"
         android:layout_marginTop="8dp"
         android:textColor="#000" />
 
     <EditText
-        android:textColorHint="#000"
         android:id="@+id/edit_Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,18 +43,16 @@
         android:layout_below="@id/edit_Name"
         android:layout_marginTop="70dp"
         android:layout_marginLeft="20dp"
-        android:hint="@string/editar_correo"
+        android:hint="@string/edit_email"
         android:textColor="#000" />
 
     <EditText
-        android:ellipsize="end"
-        android:textColorHint="#000"
         android:id="@+id/edit_Fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/buttonAccept"
         android:layout_marginLeft="50dp"
-        android:hint="@string/editar_fecha"
+        android:hint="@string/edit_date"
         android:textColor="#000"
         android:textSize="16sp" />
 
@@ -67,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:hint="@string/editar_telefono"
+        android:hint="@string/edit_phone"
         android:layout_below="@+id/edit_Name"
         android:layout_toRightOf="@+id/edit_Name"
         android:layout_marginTop="70dp"
@@ -78,7 +73,7 @@
         android:id="@+id/buttonAccept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/guardar"
+        android:text="@string/save"
         android:layout_marginLeft="260dp"
         android:layout_below="@id/edit_Telefono"
         android:layout_marginTop="40dp"/>
