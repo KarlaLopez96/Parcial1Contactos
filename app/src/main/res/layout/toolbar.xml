@@ -4,4 +4,4 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="?attr/actionBarSize"
     android:id="@+id/toolbar"
-    android:background="#087f23"/>
+    android:background="#26418f"/>
