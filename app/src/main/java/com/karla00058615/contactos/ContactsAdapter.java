@@ -2,6 +2,7 @@ package com.karla00058615.contactos;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,7 +67,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         holder.fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //se pregunt si la etrell a la que e le hace tab contiene un
+                //se pregunta si la etrella la que se le hace tab contiene un
                 //contacto que es favorito o no y dependiendo marca estrella o no
                 //ademas de enviar el contacto o quitarlos de la lista de favoritos
                 if(!contactosList.get(position).getFav()){
@@ -130,8 +132,11 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             InfoFragment fragment = new InfoFragment();
             fragment.setArguments(bundle);
 
-            transaction.replace(R.id.fragmentC, fragment);
-
+            if(ctx.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                transaction.replace(R.id.fragmentB, fragment);
+            }else if (ctx.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+                transaction.replace(R.id.fragmentC, fragment);
+            }
             //Realizando cambios.
             transaction.commit();
 

@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -105,7 +107,13 @@ public class InfoFragment extends Fragment{
                 EditFragment fragment = new EditFragment();
                 fragment.setArguments(cubeta);
 
-                transaction.replace(R.id.fragmentC, fragment);
+                if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                    FrameLayout FL = view.findViewById(R.id.fragmentB);
+                    FL.setVisibility(View.GONE);
+                    transaction.replace(R.id.fragmentC, fragment);
+                }else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+                    transaction.replace(R.id.fragmentC, fragment);
+                }
 
                 //Realizando cambios.
                 transaction.commit();

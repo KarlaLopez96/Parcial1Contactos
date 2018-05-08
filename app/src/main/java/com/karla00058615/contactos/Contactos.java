@@ -1,11 +1,14 @@
 package com.karla00058615.contactos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Karla on 21/4/2018.
  */
 
 //objeto contacos que tiene la descripcion basica de un contacto
-public class Contactos {
+public class Contactos implements Parcelable{
 
     private String id;
     //booleano que se usa para determinar si es un favorito o no
@@ -21,6 +24,28 @@ public class Contactos {
         this.fecha = fecha;
         this.telefono = telefono;
     }
+
+    protected Contactos(Parcel in) {
+        id = in.readString();
+        fav = in.readByte() != 1;
+        nombre = in.readString();
+        email = in.readString();
+        telefono = in.readString();
+        direcion = in.readString();
+        fecha = in.readString();
+    }
+
+    public static final Creator<Contactos> CREATOR = new Creator<Contactos>() {
+        @Override
+        public Contactos createFromParcel(Parcel in) {
+            return new Contactos(in);
+        }
+
+        @Override
+        public Contactos[] newArray(int size) {
+            return new Contactos[size];
+        }
+    };
 
     public String getDirecion() {
         return direcion;
@@ -82,5 +107,20 @@ public class Contactos {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(nombre);
+        parcel.writeString(email);
+        parcel.writeString(telefono);
+        parcel.writeString(direcion);
+        parcel.writeString(fecha);
+        parcel.writeByte((byte)(fav ? 1:0));
     }
 }

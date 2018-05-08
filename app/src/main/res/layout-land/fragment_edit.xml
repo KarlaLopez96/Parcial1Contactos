@@ -7,7 +7,7 @@
     android:layout_margin="16dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageContact2"
+        android:id="@+id/imageContact"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center"
@@ -15,7 +15,7 @@
         android:layout_margin="8dp"/>
 
     <EditText
-        android:id="@+id/add_Name"
+        android:id="@+id/edit_Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -27,7 +27,7 @@
 
 
     <EditText
-        android:id="@+id/add_Direccion"
+        android:id="@+id/edit_Direccion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -44,7 +44,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/add_Email"
+            android:id="@+id/edit_Email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -55,7 +55,7 @@
             android:textColor="#000" />
 
         <EditText
-            android:id="@+id/add_Fecha"
+            android:id="@+id/edit_Fecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -76,7 +76,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/add_Telefono"
+            android:id="@+id/edit_Telefono"
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -87,7 +87,7 @@
             android:textColor="#000" />
 
         <Button
-            android:id="@+id/buttonEdit"
+            android:id="@+id/buttonAccept"
             android:layout_width="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_height="wrap_content"

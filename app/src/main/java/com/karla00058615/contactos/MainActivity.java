@@ -4,12 +4,12 @@ import android.Manifest;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,8 +18,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -42,6 +42,10 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
         setSupportActionBar(toolbar);
+        if(savedInstanceState != null){
+            contactos = savedInstanceState.getParcelableArrayList("contactos");
+            favoritos = savedInstanceState.getParcelableArrayList("fav");
+        }
         //Peticion de permisos
 
         // Should we show an explanation?
@@ -62,10 +66,12 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
 
 
     public void SecondMain(){
-        contacts = (Button)findViewById(R.id.button_peliculas);
+        contacts = (Button)findViewById(R.id.button_contacts);
         fav = (Button) findViewById(R.id.button_favoritos);
 
-        contactos = fillList();
+        if(contactos.isEmpty()){
+            contactos = fillList();
+        }
         contacts.setOnClickListener(this);
 
         //Maneja los fragmentos.
@@ -93,9 +99,7 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
         //se manda el bundle al fragment
         fragment.setArguments(bundle);
 
-        transaction.add(R.id.fragmentC, fragment);
-
-        SearchView searchView = findViewById(R.id.search);
+        transaction.replace(R.id.fragmentC, fragment);
 
         //Realizando cambios.
         transaction.commit();
@@ -128,7 +132,13 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
         //se manda el bundle al fragment
         fragment.setArguments(bundle);
 
-        transaction.replace(R.id.fragmentC, fragment);
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            FrameLayout FL = findViewById(R.id.fragmentB);
+            FL.setVisibility(View.VISIBLE);
+            transaction.replace(R.id.fragmentC, fragment);
+        }else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            transaction.replace(R.id.fragmentC, fragment);
+        }
 
         //Realizando cambios.
         transaction.commit();
@@ -162,15 +172,21 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
         //se manda el bundle al fragment
         fragment.setArguments(bundle);
 
-        transaction.replace(R.id.fragmentC, fragment);
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            FrameLayout FL = findViewById(R.id.fragmentB);
+            FL.setVisibility(View.VISIBLE);
+            transaction.replace(R.id.fragmentC, fragment);
+        }else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            transaction.replace(R.id.fragmentC, fragment);
+        }
 
-        //Realizando cambios.
+        //Realizando los cambios.
         transaction.commit();
     }
 
     private ArrayList<Contactos> fillList(){
-        String id,nombre,email=" ",telefonos = " ";
-        String direccion = " ",fecha = " ";
+        String id,nombre,email = "",telefonos = "";
+        String direccion = "",fecha = "";
         ArrayList<Contactos> l = new ArrayList<>();
 
 
@@ -382,13 +398,31 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
                 //Crea un fragmento y lo añade.
                 AddFragment fragment = new AddFragment();
 
-                transaction.replace(R.id.fragmentC, fragment);
+                if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                    FrameLayout FL = findViewById(R.id.fragmentB);
+                    FL.setVisibility(View.GONE);
+                    transaction.replace(R.id.fragmentC, fragment);
+                }else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+                    transaction.replace(R.id.fragmentC, fragment);
+                }
 
                 //Realizando cambios.
                 transaction.commit();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (newConfig.orientation== Configuration.ORIENTATION_LANDSCAPE){
+            SecondMain();
+
+        }else if(newConfig.orientation== Configuration.ORIENTATION_PORTRAIT){
+            SecondMain();
         }
     }
 
@@ -483,7 +517,13 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
         //se manda el bundle al fragment
         fragment.setArguments(bundle);
 
-        transaction.replace(R.id.fragmentC, fragment);
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            FrameLayout FL = findViewById(R.id.fragmentB);
+            FL.setVisibility(View.VISIBLE);
+            transaction.replace(R.id.fragmentC, fragment);
+        }else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            transaction.replace(R.id.fragmentC, fragment);
+        }
 
         //Realizando cambios.
         transaction.commit();
@@ -521,11 +561,24 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
         //se manda el bundle al fragment
         fragment.setArguments(bundle);
 
-        transaction.replace(R.id.fragmentC, fragment);
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            FrameLayout FL = findViewById(R.id.fragmentB);
+            FL.setVisibility(View.VISIBLE);
+            transaction.replace(R.id.fragmentC, fragment);
+        }else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            transaction.replace(R.id.fragmentC, fragment);
+        }
 
         //Realizando cambios.
         transaction.commit();
 
         //String id, String nombre, String email, boolean fav,String telefono, String direcion, String fecha
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArrayList("contactos",contactos);
+        outState.putParcelableArrayList("fav",favoritos);
+        super.onSaveInstanceState(outState);
     }
 }
