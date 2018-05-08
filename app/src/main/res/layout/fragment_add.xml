@@ -64,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:phoneNumber="true"
+        android:inputType="phone"
         android:hint="@string/phone"
         android:layout_below="@+id/add_Name"
         android:layout_toRightOf="@+id/add_Name"
