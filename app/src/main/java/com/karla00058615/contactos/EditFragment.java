@@ -1,5 +1,9 @@
 package com.karla00058615.contactos;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,7 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+
+import java.util.Calendar;
 
 
 /**
@@ -94,11 +101,29 @@ public class EditFragment extends Fragment {
         //obtencion de datos por medio del bundle
         bundle = getArguments();
         //se insertan los datos en los editText para que el usuario pueda cambiarlos
-        nombre.setText(bundle.getString("nombre"));
-        direccion.setText(bundle.getString("direccion"));
-        email.setText(bundle.getString("email"));
-        telefono.setText(bundle.getString("telefono"));
-        fecha.setText(bundle.getString("fecha"));
+        if(!bundle.getString("nombre").equals("")){
+            nombre.setText(bundle.getString("nombre"));
+        }
+        if(!bundle.getString("direccion").equals("")){
+            direccion.setText(bundle.getString("direccion"));
+        }
+        if(!bundle.getString("email").equals("")){
+            email.setText(bundle.getString("email"));
+        }
+        if(!bundle.getString("telefono").equals("")){
+            telefono.setText(bundle.getString("telefono"));
+        }
+        if(!bundle.getString("fecha").equals("")){
+            fecha.setText(bundle.getString("fecha"));
+        }
+
+        fecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment newFragment = new SelectDateFragment();
+                newFragment.show(getFragmentManager(), "DatePicker");
+            }
+        });
 
         return view;
     }
@@ -142,5 +167,29 @@ public class EditFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @SuppressLint("ValidFragment")
+    public class SelectDateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            //al crear el dialog de la fecha esta se pone en la fecha actual
+            final Calendar calendar = Calendar.getInstance();
+            int yy = calendar.get(Calendar.YEAR);
+            int mm = calendar.get(Calendar.MONTH);
+            int dd = calendar.get(Calendar.DAY_OF_MONTH);
+            return new DatePickerDialog(getActivity(), this, yy, mm, dd);
+        }
+
+        public void onDateSet(DatePicker view, int yy, int mm, int dd) {
+            //se encarga de cambiar el dalog con forme el usuario prefiera
+            populateSetDate(yy, mm+1, dd);
+        }
+        public void populateSetDate(int year, int month, int day) {
+            //se setea la fecha seleccionada en el campo de fecha
+            fecha.setText(month+"/"+day+"/"+year);
+        }
+
     }
 }

@@ -47,6 +47,7 @@
         android:textColor="#000" />
 
     <EditText
+        android:focusable="false"
         android:id="@+id/edit_Fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,6 +55,7 @@
         android:layout_marginLeft="30dp"
         android:hint="@string/edit_date"
         android:textColor="#000"
+        android:clickable="true"
         android:textSize="16sp" />
 
     <EditText

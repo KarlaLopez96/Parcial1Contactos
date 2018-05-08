@@ -135,7 +135,7 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             FrameLayout FL = findViewById(R.id.fragmentB);
             FL.setVisibility(View.VISIBLE);
-            transaction.replace(R.id.fragmentC, fragment);
+            transaction.replace(R.id.fragmentB, fragment);
         }else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
             transaction.replace(R.id.fragmentC, fragment);
         }
@@ -252,12 +252,12 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
                 email = "";
             }
             l.add(new Contactos(id,nombre,email,false,telefonos,direccion,fecha));
-            id = " ";
+            id = "";
             nombre = "";
-            email = " ";
-            telefonos = " ";
-            fecha = " ";
-            direccion = " ";
+            email = "";
+            telefonos = "";
+            fecha = "";
+            direccion = "";
 
         }
         phones.close();
@@ -573,6 +573,12 @@ FavoritosFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteract
         transaction.commit();
 
         //String id, String nombre, String email, boolean fav,String telefono, String direcion, String fecha
+    }
+
+    @Override
+    public void quitarFrameB() {
+        FrameLayout FL = findViewById(R.id.fragmentB);
+        FL.setVisibility(View.GONE);
     }
 
     @Override

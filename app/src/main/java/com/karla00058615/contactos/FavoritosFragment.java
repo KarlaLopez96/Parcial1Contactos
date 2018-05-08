@@ -96,7 +96,7 @@ public class FavoritosFragment extends Fragment {
         for (int i = 0;i < (bundle.size())/7;i++){
             if(bundle.getBoolean("fav"+cont)){
                 l.add(new Contactos(bundle.getString("id"+cont),bundle.getString("name"+cont)
-                        ,bundle.getString("enmail"+cont),bundle.getBoolean("fav"+cont)
+                        ,bundle.getString("email"+cont),bundle.getBoolean("fav"+cont)
                         ,bundle.getString("telefono"+cont),bundle.getString("direccion"+cont),
                         bundle.getString("fecha"+cont)));
             }

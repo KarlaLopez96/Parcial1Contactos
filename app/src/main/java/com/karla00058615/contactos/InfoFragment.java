@@ -34,6 +34,7 @@ public class InfoFragment extends Fragment{
     private TextView nombre,id,direccion,telefono,email,fecha;
     private ImageButton buttonShare,buttonCall,buttonEdit;
     Bundle bundle;
+    ComunicationFragment CF;
 
     public InfoFragment() {
         // Required empty public constructor
@@ -108,8 +109,7 @@ public class InfoFragment extends Fragment{
                 fragment.setArguments(cubeta);
 
                 if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-                    FrameLayout FL = view.findViewById(R.id.fragmentB);
-                    FL.setVisibility(View.GONE);
+                    CF.quitarFrameB();
                     transaction.replace(R.id.fragmentC, fragment);
                 }else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
                     transaction.replace(R.id.fragmentC, fragment);
@@ -122,12 +122,22 @@ public class InfoFragment extends Fragment{
 
         bundle = getArguments();
 
-        nombre.setText(bundle.getString("name"));
+        if(!bundle.getString("name").equals("")){
+            nombre.setText(bundle.getString("name"));
+        }
         id.setText(bundle.getString("id"));
-        direccion.setText("Dirección: "+bundle.getString("direccion"));
-        email.setText("Email: "+bundle.getString("email"));
-        telefono.setText("Móvil: "+bundle.getString("telefono"));
-        fecha.setText("Fecha: "+bundle.getString("fecha"));
+        if(!bundle.getString("direccion").equals("")){
+            direccion.setText(bundle.getString("direccion"));
+        }
+        if(!bundle.getString("email").equals("")){
+            email.setText(bundle.getString("email"));
+        }
+        if(!bundle.getString("telefono").equals("")){
+            telefono.setText(bundle.getString("telefono"));
+        }
+        if(!bundle.getString("fecha").equals("")){
+            fecha.setText(bundle.getString("fecha"));
+        }
 
         //listener que manda a llamar el intento de llamar al contacto usando el numero
         //que se obtuvo del bundle
@@ -196,6 +206,7 @@ public class InfoFragment extends Fragment{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        CF = (ComunicationFragment) getActivity();
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {

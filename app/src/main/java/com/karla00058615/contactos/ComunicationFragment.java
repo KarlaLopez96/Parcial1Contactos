@@ -16,4 +16,6 @@ public interface ComunicationFragment {
     public void enviarContactoEditado(String id,String nombre,String direccion,String email,String telefono,String fecha);
 
     public void enviarContactoNuevo(String nombre,String direccion,String email,String telefono,String fecha);
+
+    public void quitarFrameB();
 }
