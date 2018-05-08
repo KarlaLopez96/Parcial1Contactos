@@ -29,7 +29,6 @@
         android:gravity="center"
         android:hint="@string/info_id"
         android:textColor="#000"
-        android:layout_marginTop="20dp"
         android:layout_margin="8dp"/>
 
     <TextView
@@ -63,7 +62,6 @@
             android:gravity="left"
             android:layout_weight="1"
             android:hint="@string/info_phone"
-            android:layout_marginLeft="8dp"
             android:textColor="#000" />
 
 
