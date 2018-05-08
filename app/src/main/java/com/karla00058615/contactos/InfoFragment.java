@@ -114,7 +114,6 @@ public class InfoFragment extends Fragment{
                 }else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
                     transaction.replace(R.id.fragmentC, fragment);
                 }
-
                 //Realizando cambios.
                 transaction.commit();
             }
